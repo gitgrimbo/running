@@ -1,0 +1,125 @@
+<title>RUN MAPS</title>
+
+<style>
+  html,
+  body {
+    font-family: Tahoma;
+  }
+
+  div.iframe-parent {
+    display: inline-block;
+    padding: 10px;
+  }
+
+  p,
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 14pt;
+  }
+
+</style>
+
+<div id="app"></div>
+
+<script>
+  function chunk(array, size) {
+    const chunked_arr = [];
+    let index = 0;
+    while (index < array.length) {
+      chunked_arr.push(array.slice(index, size + index));
+      index += size;
+    }
+    return chunked_arr;
+  }
+
+  const sections = [
+    [
+      "Weston Park",
+      [
+        "Park and back",
+        "https://onthegomap.com/?m=r&amp;u=km&amp;w%5B%5D=Routes+may+not+be+suitable+for+public+use.&amp;c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&amp;d=4369&amp;f=13430c2c00&amp;n=1&amp;dm=1&amp;context=embed&amp;r2=y_xbAznb9r1g2Nl13JFTAF8H4HN5LJX2h2JNVj110f1d2h1b2h2z313HRX1b1p1l1NNNLTJ95l2j1b1Jd1Pp1R31PDr1b1d1Tj1Td1PFBD5B5v1RL9H1P1Z10h10p14F2T2B0H290Z16H2F4H4B4PAB4F8PGNa1LW1Ng1FOPg1Ro1HSRm1HQLSBADAd1Kj2e1h1k1Pc1FSBW19a1Bo10q11q20K1e40w21e15a17GNW1HCNIf1M54f1MNEB6REj1Sn1Qh1KH4B0l10R0R0V4H4F4TQHe15OCw1Oc2Qs1CQ6A48Si1c1u1a1u1EMg2o3MY1s1q2Oa1q1o2a1g2Q_1w1g4s1w36EU_18Q8SGy24UEW54W12k10c12Y2G440M40g1Bi10QAa24c1W2s2q1q18CIOGUABY2a1Q141c1F43QPC5C3a1W1IUCAA1858F8X1232J2T6880E56JAC88Eb1Ol1u4rAW1Z2Qv1Id16N6R3j38n16De1t1w1n2Uf1KNk1z1AJAVEn1Ej1Gv1Cd1El18H692BABMJo1n187A3ABMLG9E5G3A3O7A11HAd1A20B6d1CNg2Pq1b1MTGV8P8d1Az1Gd2Gx1Ud3EV25Kb1Mb1m2r3EPa1r1Sf1G3W1L6288Om1s1f2",
+        "Figure of 8 (small)",
+        "https://onthegomap.com/?m=r&amp;u=km&amp;w%5B%5D=Routes+may+not+be+suitable+for+public+use.&amp;c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&amp;d=1091&amp;f=2f3b2a7a45&amp;n=1&amp;dm=1&amp;context=embed&amp;r2=acwbAh_Y960ABY2a1Q141c1F43QPC5C3EHEn1070X17PBTBBz1Nf1b1HL571R3H11FLPBv1Br3L0K0MBi10QAa24c1W2s2q1q1Qa146COABY2a1Q141EKAE88E85M5Q5852D5B8JAF4945452Rv3FVX18D110t1Vt1DB0914D6F4J232H6R2L0d1MUg1u1q1q1Qa1GU52",
+        "Figure of eight (large)",
+        "https://onthegomap.com/?m=r&u=km&w%5B%5D=Routes+may+not+be+suitable+for+public+use.&c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&d=1188&f=2f3b2a7a45&n=1&dm=1&context=share&r2=acwbAh_Y960ABY2a1Q141c1F43QPC5C3a1W1IUCAA1858D01Ab12J2TDTPVf1n1FDBBz1Nf1b1HL571R3H11FLPBv1Br3L0K0MBi10QAa24c1W2s2q1q1Qa146COABY2a1Q141EKAE88E85M5Q5852D5B8JAF4945452Rv3FVX18D110t1Vt1DB0914D6F4J232H6R2L0d1MUg1u1q1q1Qa1GU52",
+      ],
+    ],
+    [
+      "Hillsborough Park",
+      [
+        "Park loop",
+        "https://onthegomap.com/?m=r&u=km&w%5B%5D=Routes+may+not+be+suitable+for+public+use.&c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&d=1432&f=63301851c0&n=1&dm=1&context=share&r2=ay_bAvlb9Aa1Uo4q1_8a1HC4IIAW1Mc14CAY1Cq16IIs16A0MQe36K6KEk26I4CKk1A4E0K961UBc1Vo1r1A324k4p741q3XD6rBPx19Lj7q8HKz1k2X1e19ERCb1B93n2f1x17H7X1X1t1x2X1Z1JR02",
+        "Park to home",
+        "https://onthegomap.com/?m=r&u=km&w%5B%5D=Routes+may+not+be+suitable+for+public+use.&c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&d=2221&f=fa215b1c08&n=1&dm=1&context=share&r2=Wy_bAZmb9Pd1Tp1Pt1HVFLb1l1F31ND6R830Z1Qp1c1Z2m1HEDCLMd1Y1Vc1NUj1W236La1Ni17ELo13A5ATk2DDDFB9RTBLTw1147GBKNo19GDG123496d2Sd187130r1JVBJ2V8H8n14D67837D971P3f25F0n1BPBh1HN3R0v46F2F2969A7A5AHg19Q7GLi1BKRi19Ih1y1DC78L693BBNV15BT1B2JAh10B2D0h13FPb3Dr1Fx1NX2TZ2Rd2Pt1Jb1x1p3Pn1Vr1FLVPB39296X1SJI96X16h15H1n2VT0R4V2b11X13H5z17HGDEPUX1k1JSPS9474D43I7I9GGU4K8IGUo1Z2",
+      ],
+    ],
+    [
+      "Rivelin",
+      [
+        "Rivelin loop",
+        "https://onthegomap.com/?m=r&u=km&w%5B%5D=Routes+may+not+be+suitable+for+public+use.&c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&d=10118&f=9af2bf4a6d&n=1&dm=1&context=share&r2=i~xbApob9b2W3Nl13JFTAF8H4HE3I789IHKRY1j1QTEDIF4FAFi1x1EJW1Z1e1TW1FO1Y11a18i1IW4o2g1Q1l13l1Fx47~19d2656L0RHv3Dx25h11j12f10Z11H0~10~23v3Fp7L~23H202l20d22t24p10J1b1Dd1Z1h4Dd1Dl1Hz1Dp19TBf14L9B33DFZ2v1~2h3l1Vd1Lb2Z1PDTFNLB9JJHTJd15FBV~1h6JZ2z1b6v1n5b1v313Nl217Jd3Nt3h1~6n1h49Rt1x4d2f6Fn1BZ15Nj2z8p2f9Vr31N1V2V6R6j12BAz12J0Jx2f7Pv1l3r8X1f2d1r2Jl1Rx2195L9l29X43r19t39l3d3xT7j40h42T4p1QhA4d21h11Z17d19n1BZ19JDJVN7575t1Z1h1l1h1x1f1t23F7LVn3Hj2Df33d32~16t1o1XBIX4En2Ep40l31V09Fl33N3L177d1j3jJRt4h1O74TK74HCFC5496F8j245e41o15Y46w3Ak34s25e2Be2l1c5VW39S3GBe15O5Y15W39u9BoX1Di65m1X1m5d1k65k12c36i102k1w8s2aHEq2Cg2a2_CEw2GW36o1Ew2Kc5G_34W20K5q29c2JY2Te2n1m3NY2HY27s15w11i24k2Ce5KW7e1yH6u2Ic82I8W44w10o13i13KZ1W4Ta3X1w3Vw318Ry2f1_49Q9Y13C8I4E1G1O5c20w130402Y24W1Kq1CQOq1a1k2Oo1g2o46C2CIg24c1042C2e31q11Y1Ti87g20Ea20E0y10W30A060s30Y42Q0w24_24i128i56_40K4S4C48IY1CO6C2626Gi16G4MAW20Y21EO0K0a10Q2I2MAw1SC6E6GCe1Qk1Ue1Us1c1UGq1Se1Qc1Km2k1A6UKOMOOq1m1Y1c1IS24i2_3i1c2g1e2Y1k1KOY2i2MK60I63I7I9GGU4KOm1c2~2",
+        "Out and back",
+        "https://onthegomap.com/?m=r&u=km&w%5B%5D=Routes+may+not+be+suitable+for+public+use.&c%5B%5D=Route+data+%C2%A92020+On+The+Go+Map%2C+OpenStreetMap+Contributors&d=10503&f=9af2bf4a6d&n=1&dm=1&context=share&r2=a~xbAfob9z1s2Nl13JFTAF8H4HE3I7GFABKRY1j1QTEDIF4FAFi1x1EJW1Z1e1TW1FU1S1a18i1IW4o2g1Q1l13l1Fx47z19f27~13T7T9Vf1d3b1Z2X1t1h1f2h2X4FPn2b4n1r2j1h2h2X4n2X4r1x2Nf179Tn1b7r7FJZ1d2j1r359359Dp1h2FVHz15VFX39b17Td1v4Nb2Tb2N~1Ld39x29r1X1r2d2l4f1p2z1v3RVd2X2RHp1Tn2Hh2Fr1BJ3B371t4Z1J1R2F6LIPW17E3AX1_1JQl1Sx1Sz1Y1h1KPD71X1B4J4h10n13v17~31HHb85t2d1xHJ~6Bd53j22h26v18r1IX2OX2o1l3Ud2KX2Ab26p20J3~1Z1Z9Dv25n1F~2Dv2Z2zCBf2Dp2r2ZHj1v8015h11b36j1e1j6Y1l56l1Eh6CnX1At96~26X16NCd14FARW1~2m1b5Cd26d23r29j35v38p56d403045e47q56w3Ak34s25e2Be2l1c5VW39S3GBe15O5Y15W39u9BoX1Di65m1X1m5d1k65k12c36i102k1w8s2aHEq2Cg2a2_CEw2GW36o1Ew2a1a94W20K5q29c2JY2Te2n1m3NY2HY27s15w11i24k2Ce5KW7e1yH6u2Ic82I2e16u24w10o13i13KZ1W4Ta3X1w3X1Y4Ry2f1_49Q9Y13C8I4E1G1O5c20w12Y24W1AOASCQOq1a1k2Oo1g2o46C2CIg24c1042C2e31q11Y1b1sA0Ea10W10E0y10W30A060s30Y42Q0w24c22a248i56_40K4S4C48IY1CO6C4CGi16G4MAW20Y21EI0Q0a10Q2I2MAw1SC6E6GCe1Qk1Ue1Us1c1UGq1Se1Qc1Km2k1A6UKOMOOq1m1Y1c1IS24i2_3i1c2g1e2CGMUKOY2i2MKO63I7I9GGU4KOm1W2t2",
+      ],
+    ],
+  ];
+
+  const mapTemplate = ({
+    name,
+    url,
+    width = 550,
+    height = 550,
+  }) => {
+    return `
+<div class="iframe-parent">
+<iframe
+  width="${width}"
+  height="${height}"
+  frameborder="0"
+  scrolling="no"
+  marginheight="0"
+  marginwidth="0"
+  src="${url}">
+</iframe>
+<br/>
+<a
+  href="${url}"
+  target="_blank">${name}</a>
+</div>
+`;
+  };
+
+  const mapsTemplate = ({ name, maps }) => (
+    chunk(maps, 2).map(([name, url]) => (
+      mapTemplate({ name, url }))
+    ).join("\n")
+  );
+
+  const app = document.getElementById("app");
+
+  const html = sections
+    .map(([name, maps], sectionIdx) => (
+      `<h1><a href="#" data-section-idx=${sectionIdx}>${name}</a></h1>`
+    ))
+    .concat(`<div data-type="maps"></div>`)
+    .join("\n");
+
+  app.innerHTML = html;
+
+  const mapsEl = document.querySelector("[data-type=maps]");
+
+  window.addEventListener("click", (e) => {
+    const t = e.target;
+    const sectionIdx = t.dataset["sectionIdx"];
+    if (sectionIdx) {
+      e.preventDefault();
+      const [name, maps] = sections[sectionIdx];
+      console.log(name, maps);
+      mapsEl.innerHTML = mapsTemplate({ name, maps });
+    }
+  });
+</script>
